@@ -1,7 +1,6 @@
 package subway.domain;
 
 import org.jgrapht.graph.DefaultDirectedWeightedGraph;
-import org.jgrapht.graph.DefaultWeightedEdge;
 
 import java.util.Set;
 
@@ -9,8 +8,8 @@ import static subway.domain.Direction.UP;
 
 public class SubwayGraph implements Graph {
 
-    private final DefaultDirectedWeightedGraph<Station, DefaultWeightedEdge> graph
-            = new DefaultDirectedWeightedGraph<>(DefaultWeightedEdge.class);
+    private final DefaultDirectedWeightedGraph<Station, Section> graph
+            = new DefaultDirectedWeightedGraph<>(Section.class);
 
     @Override
     public void addStation(final Station station) {
@@ -18,13 +17,13 @@ public class SubwayGraph implements Graph {
     }
 
     @Override
-    public DefaultWeightedEdge addSection(final Station upStation, final Station downStation) {
+    public Section addSection(final Station upStation, final Station downStation) {
         graph.addEdge(upStation, downStation);
         return graph.getEdge(upStation, downStation);
     }
 
     @Override
-    public void setSectionDistance(final DefaultWeightedEdge section, final int distance) {
+    public void setSectionDistance(final Section section, final int distance) {
         graph.setEdgeWeight(section, distance);
     }
 
@@ -34,12 +33,12 @@ public class SubwayGraph implements Graph {
     }
 
     @Override
-    public Set<DefaultWeightedEdge> downStationsOf(final Station station) {
+    public Set<Section> downStationsOf(final Station station) {
         return graph.outgoingEdgesOf(station);
     }
 
     @Override
-    public Set<DefaultWeightedEdge> upStationsOf(final Station station) {
+    public Set<Section> upStationsOf(final Station station) {
         return graph.incomingEdgesOf(station);
     }
 
@@ -49,22 +48,22 @@ public class SubwayGraph implements Graph {
     }
 
     @Override
-    public Station getDownStation(final DefaultWeightedEdge edge) {
+    public Station getDownStation(final Section edge) {
         return graph.getEdgeTarget(edge);
     }
 
     @Override
-    public double getSectionDistance(final DefaultWeightedEdge edge) {
+    public double getSectionDistance(final Section edge) {
         return graph.getEdgeWeight(edge);
     }
 
     @Override
-    public DefaultWeightedEdge getSection(final Station upStation, final Station downStation) {
+    public Section getSection(final Station upStation, final Station downStation) {
         return graph.getEdge(upStation, downStation);
     }
 
     @Override
-    public Station getUpStation(final DefaultWeightedEdge edge) {
+    public Station getUpStation(final Section edge) {
         return graph.getEdgeSource(edge);
     }
 
@@ -74,12 +73,12 @@ public class SubwayGraph implements Graph {
     }
 
     @Override
-    public void removeSection(final DefaultWeightedEdge edge) {
+    public void removeSection(final Section edge) {
         graph.removeEdge(edge);
     }
 
     @Override
-    public Set<DefaultWeightedEdge> sectionsOf(final Station station) {
+    public Set<Section> sectionsOf(final Station station) {
         return graph.edgesOf(station);
     }
 
@@ -89,7 +88,7 @@ public class SubwayGraph implements Graph {
     }
 
     @Override
-    public void removeAllSections(final Set<DefaultWeightedEdge> edges) {
+    public void removeAllSections(final Set<Section> edges) {
         graph.removeAllEdges(edges);
     }
 

@@ -1,9 +1,8 @@
 package subway.domain.strategy;
 
-import org.jgrapht.graph.DefaultWeightedEdge;
 import subway.domain.Graph;
+import subway.domain.Section;
 import subway.domain.Station;
-import subway.domain.strategy.AddStationStrategy;
 import subway.exeption.InvalidDistanceException;
 
 public class AddStationToDownStrategy implements AddStationStrategy {
@@ -23,7 +22,7 @@ public class AddStationToDownStrategy implements AddStationStrategy {
                             final Station newStation,
                             final Station adjacentStation,
                             final int distance) {
-        DefaultWeightedEdge edge = graph.getSection(existingStation, adjacentStation);
+        Section edge = graph.getSection(existingStation, adjacentStation);
 
         final int existingDistance = (int) graph.getSectionDistance(edge);
         if (existingDistance <= distance) {

@@ -1,42 +1,40 @@
 package subway.domain;
 
-import org.jgrapht.graph.DefaultWeightedEdge;
-
 import java.util.Set;
 
 public interface Graph {
 
     void addStation(Station station);
 
-    DefaultWeightedEdge addSection(Station upStation, Station downStation);
+    Section addSection(Station upStation, Station downStation);
 
-    void setSectionDistance(DefaultWeightedEdge section, int distance);
+    void setSectionDistance(Section section, int distance);
 
     boolean containsStation(Station station);
 
-    Set<DefaultWeightedEdge> downStationsOf(Station station);
+    Set<Section> downStationsOf(Station station);
 
-    Set<DefaultWeightedEdge> upStationsOf(Station station);
+    Set<Section> upStationsOf(Station station);
 
     Set<Station> stationSet();
 
-    Station getUpStation(DefaultWeightedEdge edge);
+    Station getUpStation(Section edge);
 
-    Station getDownStation(DefaultWeightedEdge edge);
+    Station getDownStation(Section edge);
 
-    double getSectionDistance(DefaultWeightedEdge edge);
+    double getSectionDistance(Section edge);
 
-    DefaultWeightedEdge getSection(Station upStation, Station downStation);
+    Section getSection(Station upStation, Station downStation);
 
     void removeSection(Station upStation, Station downStation);
 
-    void removeSection(DefaultWeightedEdge edge);
+    void removeSection(Section edge);
 
-    Set<DefaultWeightedEdge> sectionsOf(Station station);
+    Set<Section> sectionsOf(Station station);
 
     void removeStation(Station station);
 
-    void removeAllSections(Set<DefaultWeightedEdge> edges);
+    void removeAllSections(Set<Section> edges);
 
     boolean isTerminal(Direction direction, Station station);
 }

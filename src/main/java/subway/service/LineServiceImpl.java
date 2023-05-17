@@ -1,13 +1,12 @@
 package subway.service;
 
-import org.jgrapht.graph.DefaultWeightedEdge;
 import org.springframework.stereotype.Service;
 import subway.domain.*;
 import subway.dto.*;
+import subway.exeption.StationNotFoundException;
 import subway.repository.LineRepository;
 import subway.repository.SectionRepository;
 import subway.repository.StationRepository;
-import subway.exeption.StationNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +47,7 @@ public class LineServiceImpl implements LineService {
                 final Station downStation = section.getDownStation();
                 final int distance = section.getDistance();
 
-                final DefaultWeightedEdge edge = newGraph.addSection(upStation, downStation);
+                final Section edge = newGraph.addSection(upStation, downStation);
                 newGraph.setSectionDistance(edge, distance);
             }
 

@@ -1,7 +1,7 @@
 package subway.domain.strategy;
 
-import org.jgrapht.graph.DefaultWeightedEdge;
 import subway.domain.Graph;
+import subway.domain.Section;
 import subway.domain.Station;
 import subway.exeption.InvalidDistanceException;
 
@@ -22,7 +22,7 @@ public class AddStationToUpStrategy implements AddStationStrategy {
                             final Station newStation,
                             final Station adjacentStation,
                             final int distance) {
-        DefaultWeightedEdge edge = graph.getSection(adjacentStation, existingStation);
+        Section edge = graph.getSection(adjacentStation, existingStation);
 
         final int existingDistance = (int) graph.getSectionDistance(edge);
 
